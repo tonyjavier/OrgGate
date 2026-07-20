@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AURA Private Brokerage - Mansões, coberturas duplex e propriedades exclusivas off-market no Brasil. Redefina seu conceito de viver bem com confidencialidade e luxo.">
+    <title>AURA | Imobiliária de Luxo & Propriedades Exclusivas</title>
+    
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon Concept -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='%23d4af37'>A</text></svg>">
+</head>
+<body>
+
+    <!-- ==========================================================================
+       CABECALHO / HEADER
+       ========================================================================== -->
+    <header id="main-header">
+        <div class="container">
+            <a href="#" class="logo" id="header-logo">
+                AURA<span>.</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#showcase" class="nav-link">Propriedades</a></li>
+                    <li><a href="#tour" class="nav-link">Experiência</a></li>
+                    <li><a href="#services" class="nav-link">Concierge</a></li>
+                    <li><a href="#broker" class="nav-link">O Corretor</a></li>
+                </ul>
+            </nav>
+            
+            <button class="btn btn-secondary btn-header-contact" id="btn-open-modal" onclick="openBookingModal()">
+                Agendar Visita
+            </button>
+            
+            <div class="menu-toggle" id="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="assets/hero_luxury_mansion.png" alt="Mansão de Luxo AURA ao entardecer" fetchpriority="high">
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge-gold">Coleção Privada 2026</span>
+                <h1 class="hero-title gradient-text">
+                    Arquiteturas que traduzem sua <span>grandeza</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Mansões monumentais, coberturas suspensas e propriedades ultra-exclusivas nas localizações mais cobiçadas do Brasil.
+                </p>
+            </div>
+            
+            <!-- Barra de Busca e Filtros -->
+            <div class="search-wrapper">
+                <div class="search-bar glass-card" id="search-filter-bar">
+                    <div class="search-field">
+                        <label for="filter-location">Localização</label>
+                        <select id="filter-location">
+                            <option value="all">Todas as Cidades</option>
+                            <option value="sao-paulo">São Paulo, SP</option>
+                            <option value="rio-de-janeiro">Rio de Janeiro, RJ</option>
+                            <option value="balneario-camboriu">B. Camboriú, SC</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-field">
+                        <label for="filter-type">Tipo de Imóvel</label>
+                        <select id="filter-type">
+                            <option value="all">Qualquer Tipo</option>
+                            <option value="mansion">Mansões</option>
+                            <option value="penthouse">Coberturas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-field">
+                        <label for="filter-price">Faixa de Valor</label>
+                        <select id="filter-price">
+                            <option value="all">Qualquer Valor</option>
+                            <option value="30-40">R$ 30M a R$ 40M</option>
+                            <option value="40-50">R$ 40M a R$ 50M</option>
+                            <option value="50plus">Acima de R$ 50M</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-field">
+                        <label for="property-search-input">Palavra-chave</label>
+                        <input type="text" id="property-search-input" placeholder="Ex: Piscina, Jacuzzi...">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="btn-search-properties" onclick="applyFilters()">
+                        Explorar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tags Flutuantes de Destaque -->
+            <div class="hero-features">
+                <div class="hero-feature-item">Privacidade Absoluta</div>
+                <div class="hero-feature-item">Negociações Off-Market</div>
+                <div class="hero-feature-item">Assessoria Internacional</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       SHOWCASE DE PROPRIEDADES
+       ========================================================================== -->
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <div class="section-header reveal">
+                <div>
+                    <span class="badge-gold">Destaques</span>
+                    <h2 class="section-title gradient-text">Portfólio Exclusivo</h2>
+                </div>
+                <p class="section-desc">
+                    Uma curadoria rigorosa de imóveis selecionados por seu valor arquitetônico, acabamento impecável e localização singular.
+                </p>
+            </div>
+            
+            <!-- Filtros Rápidos (Abas) -->
+            <div class="filter-tabs reveal">
+                <button class="filter-tab active" data-filter="all" onclick="filterShowcase(this, 'all')">Todos os Imóveis</button>
+                <button class="filter-tab" data-filter="sao-paulo" onclick="filterShowcase(this, 'sao-paulo')">São Paulo</button>
+                <button class="filter-tab" data-filter="rio-de-janeiro" onclick="filterShowcase(this, 'rio-de-janeiro')">Rio de Janeiro</button>
+                <button class="filter-tab" data-filter="balneario-camboriu" onclick="filterShowcase(this, 'balneario-camboriu')">Balneário Camboriú</button>
+            </div>
+            
+            <!-- Grade de Propriedades -->
+            <div class="properties-grid" id="properties-grid">
+                
+                <!-- Card 1: São Paulo -->
+                <div class="property-card glass-card reveal" data-location="sao-paulo" data-type="mansion" data-price="30-40" data-keywords="piscina floresta natureza">
+                    <div class="property-img-wrapper">
+                        <img src="assets/prop_sp_chacara.png" alt="Mansão das Samambaias em São Paulo" loading="lazy">
+                        <div class="property-info-overlay">
+                            <span class="property-tag">Oásis Florestal • Mansão</span>
+                            <h3 class="property-title">Mansão das Samambaias</h3>
+                            <div class="property-specs">
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                                    <span>950m²</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 8h20M2 16h20M22 4v16"></path></svg>
+                                    <span>5 Suítes</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect><path d="M4 21h16"></path></svg>
+                                    <span>8 Vagas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 34.500.000</span>
+                        <a href="javascript:void(0)" class="property-btn-view" onclick="openBookingModal('Mansão das Samambaias')">
+                            Apresentar
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Rio de Janeiro -->
+                <div class="property-card glass-card reveal" data-location="rio-de-janeiro" data-type="penthouse" data-price="50plus" data-keywords="jacuzzi mar vista mar rio de janeiro">
+                    <div class="property-img-wrapper">
+                        <img src="assets/prop_rio_cobertura.png" alt="Cobertura Atlântica no Rio de Janeiro" loading="lazy">
+                        <div class="property-info-overlay">
+                            <span class="property-tag">Frente Mar • Cobertura</span>
+                            <h3 class="property-title">Cobertura Atlântica</h3>
+                            <div class="property-specs">
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                                    <span>720m²</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 8h20M2 16h20M22 4v16"></path></svg>
+                                    <span>4 Suítes</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect><path d="M4 21h16"></path></svg>
+                                    <span>5 Vagas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 52.000.000</span>
+                        <a href="javascript:void(0)" class="property-btn-view" onclick="openBookingModal('Cobertura Atlântica')">
+                            Apresentar
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Balneário Camboriú -->
+                <div class="property-card glass-card reveal" data-location="balneario-camboriu" data-type="penthouse" data-price="40-50" data-keywords="vista panorâmica mar praia balneario">
+                    <div class="property-img-wrapper">
+                        <img src="assets/prop_camboriu_vista.png" alt="Vanguard Penthouse em Balneário Camboriú" loading="lazy">
+                        <div class="property-info-overlay">
+                            <span class="property-tag">Vista Panorâmica • Cobertura</span>
+                            <h3 class="property-title">Vanguard Penthouse</h3>
+                            <div class="property-specs">
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                                    <span>600m²</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 8h20M2 16h20M22 4v16"></path></svg>
+                                    <span>5 Suítes</span>
+                                </div>
+                                <div class="spec-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2" ry="2"></rect><path d="M4 21h16"></path></svg>
+                                    <span>6 Vagas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <span class="property-price">R$ 41.000.000</span>
+                        <a href="javascript:void(0)" class="property-btn-view" onclick="openBookingModal('Vanguard Penthouse')">
+                            Apresentar
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Nenhum Imóvel Encontrado Local -->
+            <div id="no-properties-message" style="display: none; text-align: center; padding: 60px 0; color: var(--text-secondary);">
+                <p style="font-size: 1.2rem; font-family: var(--font-serif); margin-bottom: 12px;">Nenhum imóvel corresponde aos filtros selecionados.</p>
+                <button class="btn btn-secondary" onclick="resetFilters()">Limpar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       VIRTUAL TOUR / INTERACTIVE EXPERIENCE
+       ========================================================================== -->
+    <section class="virtual-tour" id="tour">
+        <div class="container">
+            <div class="virtual-tour-wrapper">
+                
+                <!-- Painel Esquerdo: Imagem/Visualizador com Transições -->
+                <div class="tour-visualizer reveal" id="tour-display-box">
+                    <div class="tour-frame">
+                        <div class="tour-badge">
+                            <span></span> Tour Virtual Interativo
+                        </div>
+                        
+                        <!-- Cenas -->
+                        <div class="tour-scene active" id="scene-living">
+                            <img src="assets/tour_living.png" alt="Living Integrado com Lareira e Pé-direito Duplo">
+                        </div>
+                        
+                        <div class="tour-scene" id="scene-suite">
+                            <img src="assets/tour_suite.png" alt="Suíte Master com Banheira Integrada e Vista da Floresta">
+                        </div>
+                        
+                        <div class="tour-scene" id="scene-outdoor">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Área Externa com Piscina Infinita ao Pôr do Sol">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Painel Direito: Conteúdo e Abas Interativas -->
+                <div class="tour-content reveal">
+                    <span class="badge-gold">Imersão</span>
+                    <h2 class="section-title gradient-text" style="font-size: 3rem; margin-bottom: 20px;">Adentre o Extraordinário</h2>
+                    <p class="section-desc" style="max-width: 100%;">
+                        Nossas residências integram com maestria materiais nobres, iluminação natural cênica e layouts fluidos pensados para o bem-estar e convívio social.
+                    </p>
+                    
+                    <div class="tour-tabs" id="tour-navigation-tabs">
+                        <!-- Aba 1 -->
+                        <button class="tour-tab-btn active" onclick="switchTourScene(this, 'scene-living')" id="tab-btn-living">
+                            <div>
+                                <h3 class="tour-tab-title">Living Integrado</h3>
+                                <p class="tour-tab-desc">Pé-direito duplo, lareira e grandes panos de vidro.</p>
+                            </div>
+                            <div class="tour-tab-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </div>
+                        </button>
+                        
+                        <!-- Aba 2 -->
+                        <button class="tour-tab-btn" onclick="switchTourScene(this, 'scene-suite')" id="tab-btn-suite">
+                            <div>
+                                <h3 class="tour-tab-title">Suíte Master</h3>
+                                <p class="tour-tab-desc">Closet walk-in, banheiro integrado e vista panorâmica.</p>
+                            </div>
+                            <div class="tour-tab-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </div>
+                        </button>
+                        
+                        <!-- Aba 3 -->
+                        <button class="tour-tab-btn" onclick="switchTourScene(this, 'scene-outdoor')" id="tab-btn-outdoor">
+                            <div>
+                                <h3 class="tour-tab-title">Refúgio Externo</h3>
+                                <p class="tour-tab-desc">Piscina de borda infinita, solário e spa a céu aberto.</p>
+                            </div>
+                            <div class="tour-tab-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CONCIERGE & SERVIÇOS EXCLUSIVOS
+       ========================================================================== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center; flex-direction: column; align-items: center; gap: 20px;">
+                <span class="badge-gold">Lifestyle</span>
+                <h2 class="section-title gradient-text" style="text-align: center;">Serviço de Concierge Privado</h2>
+                <p class="section-desc" style="text-align: center; max-width: 600px;">
+                    Sua jornada de aquisição patrimonial conduzida com máxima discrição, agilidade e excelência jurídica do início ao fim.
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card glass-card reveal">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3 class="service-title">Confidencialidade</h3>
+                    <p>
+                        Acesso exclusivo a listagens fechadas (off-market), transações sob termos rígidos de confidencialidade (NDA) e reuniões privadas.
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="service-card glass-card reveal">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3 class="service-title">Consultoria Jurídica</h3>
+                    <p>
+                        Due Diligence aprofundada de toda a documentação, estruturação corporativa ou familiar (holdings) e assessoria cambial internacional.
+                    </p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="service-card glass-card reveal">
+                    <div class="service-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3 class="service-title">Helicóptero & Drone</h3>
+                    <p>
+                        Agendamento de visitas de helicóptero para análise de terrenos e mapeamento térmico/tridimensional por drones privados de alta definição.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       O CORRETOR / BROKER
+       ========================================================================== -->
+    <section class="broker" id="broker">
+        <div class="container">
+            <div class="broker-wrapper">
+                
+                <!-- Foto do Corretor -->
+                <div class="broker-image-box reveal" id="broker-portrait">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&h=750&q=80" alt="Arthur Cavalcante - Broker Especialista AURA">
+                </div>
+                
+                <!-- Bio & Dados -->
+                <div class="broker-info reveal">
+                    <span class="badge-gold">Corretor Titular</span>
+                    <h3>Arthur Cavalcante</h3>
+                    <span class="broker-role">Private Broker & Consultor Patrimonial</span>
+                    
+                    <p class="broker-bio">
+                        "Há mais de 15 anos, conecto famílias exigentes e investidores internacionais às propriedades mais cobiçadas do país. Meu compromisso reside na discrição absoluta, inteligência de mercado e na criação de transações onde o tempo e o valor de nossos clientes são tratados com o maior respeito."
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="broker-stats">
+                        <div class="stat-box">
+                            <div class="num">+1.2Bi</div>
+                            <div class="lbl">Em Transações</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num">15+</div>
+                            <div class="lbl">Anos de Carreira</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num">100%</div>
+                            <div class="lbl">Discreto & NDA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="broker-contact-row">
+                        <button class="btn btn-primary" onclick="openBookingModal('Reunião Particular com Arthur')">
+                            Solicitar Atendimento
+                        </button>
+                        <a href="tel:+5511999998888" class="btn btn-secondary" style="text-transform: none; letter-spacing: 0;">
+                            Ligar: (11) 99999-8888
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       RODAPE & NEWSLETTER
+       ========================================================================== -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-top">
+                
+                <!-- Logo e Bio -->
+                <div class="footer-column">
+                    <h3 class="logo">AURA<span>.</span></h3>
+                    <p style="font-size: 0.85rem;">
+                        Uma grife imobiliária dedicada ao extraordinário. Atendimento privado, listagens fechadas (pocket-listings) e suporte jurídico estratégico.
+                    </p>
+                </div>
+                
+                <!-- Links Úteis -->
+                <div class="footer-column">
+                    <h4>Localizações</h4>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" class="footer-link-item" onclick="filterShowcase(null, 'sao-paulo')">São Paulo - SP</a></li>
+                        <li><a href="javascript:void(0)" class="footer-link-item" onclick="filterShowcase(null, 'rio-de-janeiro')">Rio de Janeiro - RJ</a></li>
+                        <li><a href="javascript:void(0)" class="footer-link-item" onclick="filterShowcase(null, 'balneario-camboriu')">Balneário Camboriú - SC</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Institucional -->
+                <div class="footer-column">
+                    <h4>Institucional</h4>
+                    <ul class="footer-links">
+                        <li><a href="#showcase" class="footer-link-item">Nossas Obras</a></li>
+                        <li><a href="#services" class="footer-link-item">Privacidade & Termos</a></li>
+                        <li><a href="#broker" class="footer-link-item">Nossa História</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Off-Market -->
+                <div class="footer-column">
+                    <h4>Clube Off-Market</h4>
+                    <p style="font-size: 0.85rem;">
+                        Receba relatórios trimestrais e oportunidades exclusivas que não chegam ao mercado geral.
+                    </p>
+                    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" id="newsletter-form-id">
+                        <input type="email" id="newsletter-email" placeholder="Seu email corporativo" required>
+                        <button type="submit" class="btn btn-primary" style="padding: 14px 20px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <div>
+                    &copy; 2026 AURA Private Brokerage. Todos os direitos reservados. CRECI/SP 99999-J.
+                </div>
+                
+                <!-- Links Sociais -->
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="AURA no Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="AURA no LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="AURA no YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       MODAL DIALOG (AGENDAMENTO EXCLUSIVO)
+       ========================================================================== -->
+    <dialog id="booking-modal">
+        <div class="modal-content glass-card">
+            <button class="modal-close" onclick="closeBookingModal()" aria-label="Fechar Modal">&times;</button>
+            <h3 class="modal-title gradient-text">Agendar Visita</h3>
+            <p class="modal-desc">
+                Preencha os dados abaixo e nosso Private Broker entrará em contato de forma estritamente confidencial nas próximas 2 horas.
+            </p>
+            
+            <form class="modal-form" onsubmit="handleBookingSubmit(event)" id="modal-booking-form">
+                <!-- Campo Oculto para identificar a propriedade de interesse -->
+                <input type="hidden" id="booking-property" value="Geral">
+                
+                <div class="form-group">
+                    <label for="booking-name">Nome Completo</label>
+                    <input type="text" id="booking-name" required placeholder="Insira seu nome">
+                </div>
+                
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="booking-email">E-mail Corporativo</label>
+                        <input type="email" id="booking-email" required placeholder="exemplo@empresa.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="booking-phone">Telefone / WhatsApp</label>
+                        <input type="tel" id="booking-phone" required placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="booking-time">Melhor Horário para Contato</label>
+                    <select id="booking-time">
+                        <option value="manha">Manhã (08:00 - 12:00)</option>
+                        <option value="tarde">Tarde (12:00 - 18:00)</option>
+                        <option value="noite">Noite (18:00 - 21:00)</option>
+                        <option value="qualquer">Qualquer Horário (Agente disponível)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="booking-msg">Observações Especiais (Opcional)</label>
+                    <textarea id="booking-msg" rows="3" placeholder="Ex: Necessidade de sigilo absoluto, visitas de helicóptero..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px; width: 100%;">
+                    Solicitar Agendamento
+                </button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Link JS -->
+    <script src="script.js"></script>
+</body>
+</html>
